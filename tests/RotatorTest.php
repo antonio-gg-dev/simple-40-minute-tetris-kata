@@ -15,55 +15,76 @@ class RotatorTest extends TestCase
 {
   #[Test]
   #[DataProvider('tetrominoToLeftProvider')]
-  public function should_rotate_to_left(Tetromino $given, string $expected): void
+  public function should_rotate_to_left(string $given, string $expected): void
   {
-    $this->assertSame($expected, Rotator::toLeft($given->value));
+    $this->assertSame($expected, Rotator::toLeft($given));
   }
 
   public static function tetrominoToLeftProvider (): Generator
   {
-    yield 'I' => [Tetromino::I, <<<TTR
-####
-TTR
-    ];
+    yield 'I' => [Tetromino::I->value, '####'];
 
-    yield 'O' => [Tetromino::O, <<<TTR
-##
-##
-TTR
-    ];
+    yield 'O' => [Tetromino::O->value, Tetromino::O->value];
 
-    yield 'T' => [Tetromino::T, <<<TTR
+    yield 'T' => [Tetromino::T->value, <<<TTR
 # 
 ##
 # 
 TTR
     ];
 
-    yield 'J' => [Tetromino::J, <<<TTR
+    yield 'J' => [Tetromino::J->value, <<<TTR
 ###
   #
 TTR
     ];
 
-    yield 'L' => [Tetromino::L, <<<TTR
+    yield 'L' => [Tetromino::L->value, <<<TTR
   #
 ###
 TTR
     ];
 
-    yield 'S' => [Tetromino::S, <<<TTR
+    yield 'S' => [Tetromino::S->value, <<<TTR
 # 
 ##
  #
 TTR
     ];
 
-    yield 'Z' => [Tetromino::Z, <<<TTR
+    yield 'Z' => [Tetromino::Z->value, <<<TTR
  #
 ##
 # 
 TTR
     ];
+  }
+
+  #[Test]
+  #[DataProvider('tetrominoToLeftProvider')]
+  public function should_rotate_to_left_twice(string $given, string $expected): void
+  {
+    $this->assertSame($expected, Rotator::toLeft($given));
+  }
+
+  public static function tetrominoToLeftTwiceProvider (): Generator
+  {
+    yield 'I' => [Tetromino::I->value, Tetromino::I->value];
+
+    yield 'O' => [Tetromino::O->value, Tetromino::O->value];
+
+    yield 'T' => [Tetromino::T->value, <<<TTR
+ # 
+###
+TTR
+    ];
+
+    yield 'J' => [Tetromino::J->value, Tetromino::J->value];
+
+    yield 'L' => [Tetromino::L->value, Tetromino::L->value];
+
+    yield 'S' => [Tetromino::S->value, Tetromino::S->value];
+
+    yield 'Z' => [Tetromino::Z->value, Tetromino::Z->value];
   }
 }
