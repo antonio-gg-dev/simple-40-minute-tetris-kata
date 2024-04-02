@@ -37,9 +37,9 @@ TTR;
   {
     $givenT = Tetromino::T->value;
     $expectedT = <<<TTR
- #
+# 
 ##
- #
+# 
 TTR;
 
     $this->assertSame($expectedT, Rotator::toLeft($givenT));
