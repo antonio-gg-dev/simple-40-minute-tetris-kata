@@ -19,11 +19,18 @@ TTR;
   public static function toLeft(string $tetromino): string
   {
     if ($tetromino === self::T) {
-      return <<<TTR
- #
-##
- #
-TTR;
+      $rotatedTetromino = [];
+      $array = self::tetrominoToArray($tetromino);
+
+      for ($x = 0; $x < count($array[0]); $x++) {
+        $rotatedTetromino[$x] = array();
+
+        for ($y = 0; $y < count($array); $y++) {
+          $rotatedTetromino[$x][$y] = $array[$y][$x];
+        }
+      }
+
+      return self::arrayToTetromino($rotatedTetromino);
     }
 
     if ($tetromino === self::L) {
@@ -40,7 +47,7 @@ TTR;
   {
     return array_map(
       fn($row) => str_split($row),
-      explode('\n', $tetromino)
+      explode("\n", $tetromino)
     );
   }
 
@@ -50,11 +57,11 @@ TTR;
       implode(
         '',
         array_map(
-          fn($row) => implode('', $row) . '\n',
+          fn($row) => implode('', $row) . "\n",
           $array
         ),
       ),
-      '\n'
+      "\n"
     );
   }
 }
