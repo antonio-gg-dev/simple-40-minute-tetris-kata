@@ -7,16 +7,14 @@ namespace Tests;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Tetris\Rotator;
+use Tetris\Tetromino;
 
 class RotatorTest extends TestCase
 {
   #[Test]
   public function should_return_o_when_o_given(): void
   {
-    $givenO = <<<TTR
-##
-##
-TTR;
+    $givenO = Tetromino::O->value;
     $expectedO = $givenO;
 
     $this->assertSame($expectedO, Rotator::toLeft($givenO));
@@ -25,11 +23,7 @@ TTR;
   #[Test]
   public function should_rotate_l_to_left(): void
   {
-    $givenL = <<<TTR
-# 
-# 
-##
-TTR;
+    $givenL = Tetromino::L->value;
     $expectedL = <<<TTR
   #
 ###
@@ -41,10 +35,7 @@ TTR;
   #[Test]
   public function should_rotate_t_to_left(): void
   {
-    $givenT = <<<TTR
- # 
-###
-TTR;
+    $givenT = Tetromino::T->value;
     $expectedT = <<<TTR
  #
 ##
