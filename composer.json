@@ -1,0 +1,29 @@
+{
+  "name": "katarn/simple-40-minutes-tetris-kata",
+  "description": "Simple solution to the 40 minute Tetris kata solved in PHP, using string-formatted tetrominos.",
+  "type": "project",
+  "authors": [{
+    "name": "antonio-gg-dev",
+    "email": "dev@antonio.gg"
+  }],
+  "license": "MIT",
+  "scripts": {
+    "test": "./vendor/bin/phpunit"
+  },
+  "require": {
+    "php": "^8.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tetris\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
+}
