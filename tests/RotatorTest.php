@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use Generator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Tetris\Rotator;
@@ -12,36 +14,56 @@ use Tetris\Tetromino;
 class RotatorTest extends TestCase
 {
   #[Test]
-  public function should_return_o_when_o_given(): void
+  #[DataProvider('tetrominoToLeftProvider')]
+  public function should_rotate_to_left(Tetromino $given, string $expected): void
   {
-    $givenO = Tetromino::O->value;
-    $expectedO = $givenO;
-
-    $this->assertSame($expectedO, Rotator::toLeft($givenO));
+    $this->assertSame($expected, Rotator::toLeft($given->value));
   }
 
-  #[Test]
-  public function should_rotate_l_to_left(): void
+  public static function tetrominoToLeftProvider (): Generator
   {
-    $givenL = Tetromino::L->value;
-    $expectedL = <<<TTR
-  #
-###
-TTR;
+    yield 'I' => [Tetromino::I, <<<TTR
+####
+TTR
+    ];
 
-    $this->assertSame($expectedL, Rotator::toLeft($givenL));
-  }
+    yield 'O' => [Tetromino::O, <<<TTR
+##
+##
+TTR
+    ];
 
-  #[Test]
-  public function should_rotate_t_to_left(): void
-  {
-    $givenT = Tetromino::T->value;
-    $expectedT = <<<TTR
+    yield 'T' => [Tetromino::T, <<<TTR
 # 
 ##
 # 
-TTR;
+TTR
+    ];
 
-    $this->assertSame($expectedT, Rotator::toLeft($givenT));
+    yield 'J' => [Tetromino::J, <<<TTR
+###
+  #
+TTR
+    ];
+
+    yield 'L' => [Tetromino::L, <<<TTR
+  #
+###
+TTR
+    ];
+
+    yield 'S' => [Tetromino::S, <<<TTR
+# 
+##
+ #
+TTR
+    ];
+
+    yield 'Z' => [Tetromino::Z, <<<TTR
+ #
+##
+# 
+TTR
+    ];
   }
 }
