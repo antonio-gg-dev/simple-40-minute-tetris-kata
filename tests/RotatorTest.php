@@ -21,4 +21,20 @@ TTR;
 
     $this->assertSame($expectedO, Rotator::toLeft($givenO));
   }
+
+  #[Test]
+  public function should_rotate_l_to_left(): void
+  {
+    $givenL = <<<TTR
+# 
+# 
+##
+TTR;
+    $expectedL = <<<TTR
+  #
+###
+TTR;
+
+    $this->assertSame($expectedL, Rotator::toLeft($givenL));
+  }
 }
