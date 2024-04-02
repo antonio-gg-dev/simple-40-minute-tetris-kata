@@ -6,16 +6,6 @@ namespace Tetris;
 
 class Rotator
 {
-  private const L = <<<TTR
-# 
-# 
-##
-TTR;
-  private const T = <<<TTR
- # 
-###
-TTR;
-
   public static function toLeft(string $tetromino): string
   {
     $rotatedTetromino = [];
