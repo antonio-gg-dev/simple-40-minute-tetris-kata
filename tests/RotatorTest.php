@@ -87,4 +87,51 @@ TTR
 
     yield 'Z' => [Tetromino::Z->value, Tetromino::Z->value];
   }
+
+  #[Test]
+  #[DataProvider('tetrominoToRightProvider')]
+  public function should_rotate_to_right(string $given, string $expected): void
+  {
+    $this->assertSame($expected, Rotator::toRight($given));
+  }
+
+  public static function tetrominoToRightProvider (): Generator
+  {
+    yield 'I' => [Tetromino::I->value, '####'];
+
+    yield 'O' => [Tetromino::O->value, Tetromino::O->value];
+
+    yield 'T' => [Tetromino::T->value, <<<TTR
+ #
+##
+ #
+TTR
+    ];
+
+    yield 'J' => [Tetromino::J->value, <<<TTR
+#  
+###
+TTR
+    ];
+
+    yield 'L' => [Tetromino::L->value, <<<TTR
+###
+#  
+TTR
+    ];
+
+    yield 'S' => [Tetromino::S->value, <<<TTR
+# 
+##
+ #
+TTR
+    ];
+
+    yield 'Z' => [Tetromino::Z->value, <<<TTR
+ #
+##
+# 
+TTR
+    ];
+  }
 }

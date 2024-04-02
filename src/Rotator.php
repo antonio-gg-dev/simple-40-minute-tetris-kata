@@ -22,6 +22,22 @@ class Rotator
     return self::arrayToTetromino($rotatedTetromino);
   }
 
+  public static function toRight(string $tetromino): string
+  {
+    $rotatedTetromino = [];
+    $array = self::tetrominoToArray($tetromino);
+
+    for ($x = 0; $x < count($array[0]); $x++) {
+      $rotatedTetromino[$x] = array();
+
+      for ($y = 0; $y < count($array); $y++) {
+        $rotatedTetromino[$x][$y] = $array[count($array) - $y - 1][$x];
+      }
+    }
+
+    return self::arrayToTetromino($rotatedTetromino);
+  }
+
   private static function tetrominoToArray(string $tetromino): array
   {
     return array_map(
