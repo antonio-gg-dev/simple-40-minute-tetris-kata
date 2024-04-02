@@ -18,29 +18,18 @@ TTR;
 
   public static function toLeft(string $tetromino): string
   {
-    if ($tetromino === self::T) {
-      $rotatedTetromino = [];
-      $array = self::tetrominoToArray($tetromino);
+    $rotatedTetromino = [];
+    $array = self::tetrominoToArray($tetromino);
 
-      for ($x = 0; $x < count($array[0]); $x++) {
-        $rotatedTetromino[$x] = array();
+    for ($x = 0; $x < count($array[0]); $x++) {
+      $rotatedTetromino[$x] = array();
 
-        for ($y = 0; $y < count($array); $y++) {
-          $rotatedTetromino[$x][$y] = $array[$y][$x];
-        }
+      for ($y = 0; $y < count($array); $y++) {
+        $rotatedTetromino[$x][$y] = $array[$y][count($array[0]) - $x - 1];
       }
-
-      return self::arrayToTetromino($rotatedTetromino);
     }
 
-    if ($tetromino === self::L) {
-      return <<<TTR
-  #
-###
-TTR;
-    }
-
-    return self::arrayToTetromino(self::tetrominoToArray($tetromino));
+    return self::arrayToTetromino($rotatedTetromino);
   }
 
   private static function tetrominoToArray(string $tetromino): array
