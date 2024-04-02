@@ -11,14 +11,25 @@ class Rotator
 # 
 ##
 TTR;
+  private const T = <<<TTR
+ # 
+###
+TTR;
 
   public static function toLeft(string $tetromino): string {
+    if ($tetromino === self::T) {
+      return <<<TTR
+ #
+##
+ #
+TTR;
+    }
+
     if ($tetromino === self::L) {
       return <<<TTR
   #
 ###
 TTR;
-
     }
 
     return <<<TTR
